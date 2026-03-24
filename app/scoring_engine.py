@@ -1,8 +1,19 @@
-def calculate_score(repo_count, total_stars):
+def calculate_score(repo_count, total_stars, skills):
 
-    activity_score = min(repo_count * 5, 50)
-    popularity_score = min(total_stars / 1000, 50)
+    # Activity Score
+    activity_score = min(repo_count * 2, 30)
 
-    score = activity_score + popularity_score
+    # Impact Score
+    impact_score = min(total_stars / 1000, 40)
 
-    return round(score, 2)
+    # Skill Diversity Score
+    skill_diversity_score = min(len(skills) * 5, 30)
+
+    developer_score = activity_score + impact_score + skill_diversity_score
+
+    return {
+        "developer_score": round(developer_score, 2),
+        "activity_score": round(activity_score, 2),
+        "impact_score": round(impact_score, 2),
+        "skill_diversity_score": round(skill_diversity_score, 2)
+    }
