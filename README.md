@@ -184,3 +184,5 @@ The platform generates a developer report including:
 # Author
 
 John
+<img width="674" height="736" alt="image" src="https://github.com/user-attachments/assets/1344942e-2782-44cb-9e32-44be3bf34f90" />
+
