@@ -1,89 +1,186 @@
 # AI Developer Intelligence Platform
 
-An AI-powered developer analysis platform that evaluates GitHub profiles and generates insights about developer skills, impact, and potential roles.
+An AI-powered analytics platform that evaluates GitHub developers and generates insights into their technical expertise, coding activity, and engineering impact.
 
-## Overview
+The system analyzes GitHub repositories, commit activity, and project metadata to produce a **Developer Intelligence Report** including skill inference, developer scoring, and engineering insights.
 
-This system analyzes a developer’s GitHub repositories and automatically generates a **Developer Intelligence Report** including:
+---
 
-* Repository activity
-* Popularity and impact
+# Overview
+
+This platform analyzes a developer’s GitHub profile and automatically generates a comprehensive report including:
+
+* Repository statistics
+* Developer impact (stars and activity)
 * Programming language distribution
-* Skill inference
+* Skill inference from repositories
+* Framework and technology detection
+* Commit activity intelligence
+* Code complexity estimation
+* AI-generated developer summary
 * Recommended engineering roles
-* Developer scoring metrics
 
-The platform helps understand a developer's technical strengths based on their open-source contributions.
+The goal is to provide a **data-driven view of developer expertise** based on open-source contributions.
 
-## Features
+---
+
+# Key Features
+
+### Developer Analysis
 
 * GitHub repository analysis
-* Automatic skill inference from languages and repository metadata
-* Developer scoring algorithm
-* Role recommendations (ML Engineer, Backend Engineer, Systems Engineer, etc.)
-* Top repository extraction
-* Language distribution visualization
-* Developer skill radar chart
-* Interactive dashboard
+* Language distribution and technology usage
+* Top repository insights
 
-## Architecture
+### Skill Intelligence
 
-Backend API built using **FastAPI** that collects GitHub repository data and performs analysis.
+* Automatic skill inference from repositories and metadata
+* Framework detection (FastAPI, Docker, React, etc.)
+* Developer role recommendation engine
 
-Frontend dashboard built using **Streamlit** for interactive developer reports.
+### Developer Scoring
 
-GitHub API → FastAPI Analysis Engine → Skill & Scoring Engine → Streamlit Dashboard
+A scoring algorithm that evaluates:
 
-## Tech Stack
+* Activity level
+* Repository impact
+* Skill diversity
+
+### Commit Intelligence
+
+* Commit activity analysis
+* Active development months
+* Consistency scoring
+
+### Code Architecture Analysis
+
+* Repository size estimation
+* Code complexity categorization
+* Architecture maturity evaluation
+
+### AI Developer Summary
+
+Automatically generates a concise description of a developer’s technical profile.
+
+### Developer Comparison
+
+Compare multiple GitHub developers based on their developer scores.
+
+---
+
+# System Architecture
+
+```
+GitHub REST API
+        │
+        ▼
+FastAPI Backend (Developer Analysis Engine)
+        │
+        ▼
+Skill Inference + Scoring Models
+        │
+        ▼
+Developer Intelligence API
+        │
+        ▼
+Streamlit Dashboard
+```
+
+---
+
+# Tech Stack
+
+Backend
 
 * Python
 * FastAPI
-* Streamlit
-* GitHub REST API
-* Matplotlib
-* NumPy
 
-## Example Output
+Frontend
+
+* Streamlit
+
+Data Processing
+
+* GitHub REST API
+* NumPy
+* Matplotlib
+
+---
+
+# Running the Project
+
+### 1. Install dependencies
+
+```
+pip install -r requirements.txt
+```
+
+### 2. Start the backend API
+
+```
+python3 -m uvicorn app.main:app --reload
+```
+
+The API will run at:
+
+```
+http://127.0.0.1:8000
+```
+
+### 3. Start the dashboard
+
+```
+python3 -m streamlit run dashboard/app.py
+```
+
+Open the dashboard at:
+
+```
+http://localhost:8501
+```
+
+---
+
+# Example API Endpoint
+
+Analyze a GitHub developer:
+
+```
+http://127.0.0.1:8000/analyze/{github_username}
+```
+
+Example:
+
+```
+http://127.0.0.1:8000/analyze/torvalds
+```
+
+---
+
+# Example Output
 
 The platform generates a developer report including:
 
 * Developer score
-* Skill breakdown
-* Recommended roles
+* Skill profile
+* Recommended engineering roles
 * Language distribution
-* Top repositories
+* Commit activity insights
+* Code architecture analysis
+* AI-generated developer summary
 
-## Running the Project
+---
 
-Install dependencies:
+# Future Improvements
 
-pip install -r requirements.txt
-
-Start the backend API:
-
-python3 -m uvicorn app.main:app --reload
-
-Run the dashboard:
-
-streamlit run dashboard/app.py
-
-## Example API Endpoint
-
-http://127.0.0.1:8000/analyze/{github_username}
-
-Example:
-
-http://127.0.0.1:8000/analyze/torvalds
-
-## Future Improvements
-
-* Commit history analysis
-* Code complexity metrics
 * Pull request analysis
-* ML-based developer scoring
-* Organization-level analytics
+* Contributor collaboration metrics
+* Machine learning–based developer scoring
+* Organization-level developer analytics
+* Public deployment as a web application
 
-## Author
+---
+
+# Author
 
 John
-
