@@ -27,10 +27,16 @@ def analyze_user(username: str):
     url = f"https://api.github.com/users/{username}/repos"
     response = requests.get(url)
 
-    if response.status_code == 404:
-        return {"error": "GitHub user not found"}
+    if response.status_code != 200:
+        return {"error": "GitHub API request failed"}
 
     repos = response.json()
+    if not isinstance(repos, list):
+        return {"error": "GitHub API limit reached or invalid response"}
+
+    # safety check
+    if not isinstance(repos, list):
+        return {"error": "Unexpected GitHub API response"}
 
     frameworks = detect_frameworks(repos)
     commit_data = analyze_commit_activity(username, repos)
@@ -49,9 +55,12 @@ def analyze_user(username: str):
 
     for repo in repos:
 
-        total_stars += repo["stargazers_count"]
+        if not isinstance(repo, dict):
+            continue
 
-        lang = repo["language"]
+        total_stars += repo.get("stargazers_count", 0)
+
+        lang = repo.get("language")
         if lang:
             languages[lang] = languages.get(lang, 0) + 1
 

@@ -159,7 +159,7 @@ if st.button("Compare Developers"):
 
     for u in users:
         if u:
-            url = f"http://127.0.0.1:8000/analyze/{u}"
+            url = f"https://ai-developer-intelligence.onrender.com/analyze/{u}"
             res = requests.get(url)
             data = res.json()
             if "developer_score" in data:
