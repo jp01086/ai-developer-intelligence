@@ -2,12 +2,12 @@ from fastapi import FastAPI
 import requests
 from datetime import datetime
 
-from app.skill_engine import infer_skills, infer_skills_from_metadata, merge_skills, recommend_roles
-from app.scoring_engine import calculate_score
-from app.analysis_service import detect_frameworks
-from app.commit_service import analyze_commit_activity
-from app.code_analysis_service import analyze_code_complexity
-from app.ai_summary_service import generate_ai_summary
+from skill_engine import infer_skills, infer_skills_from_metadata, merge_skills, recommend_roles
+from scoring_engine import calculate_score
+from analysis_service import detect_frameworks
+from commit_service import analyze_commit_activity
+from code_analysis_service import analyze_code_complexity
+from ai_summary_service import generate_ai_summary
 
 app = FastAPI(
     title="AI Developer Intelligence Platform",
