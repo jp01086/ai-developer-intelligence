@@ -35,6 +35,37 @@ if st.button("Analyze Developer"):
     col2.metric("Impact Score", score["impact_score"])
     col3.metric("Skill Diversity", score["skill_diversity_score"])
 
+    #-------------------------------
+    # AI Summary
+    #-------------------------------
+
+    st.subheader("AI Developer Summary")
+    st.write(data["ai_summary"])
+   
+    #------------------------------
+    # Commit intelligence
+    #------------------------------
+
+    st.subheader("Commit Activity")
+
+    commit = data["commit_intelligence"]
+
+    st.write(f"Commits Last Week: {commit['commits_last_week']}")
+    st.write(f"Active Months: {commit['active_months']}")
+    st.write(f"Consistency Score: {commit['consistency_score']}")
+
+    # ----------------------------
+    # Code Architecture Analysis
+    # ----------------------------
+
+    st.subheader("Code Architecture Analysis")
+
+    code = data["code_complexity"]
+
+    st.write(f"Average Repo Size: {round(code['avg_repo_size'], 2)}")
+    st.write(f"Complexity Level: {code['complexity_level']}")
+    st.write(f"Architecture Maturity: {code['architecture_maturity']}")
+   
     # ----------------------------
     # Skills
     # ----------------------------
@@ -111,3 +142,36 @@ if st.button("Analyze Developer"):
 💻 Language: {repo['language']}  
 📝 {repo['description']}
 """)
+        
+        st.header("Developer Comparison")
+
+user1 = st.text_input("Developer 1")
+user2 = st.text_input("Developer 2")
+user3 = st.text_input("Developer 3")
+
+if st.button("Compare Developers"):
+
+    users = [user1, user2, user3]
+    scores = []
+
+    for u in users:
+        if u:
+            url = f"http://127.0.0.1:8000/analyze/{u}"
+            res = requests.get(url)
+            data = res.json()
+            if "developer_score" in data:
+              scores.append(data["developer_score"])
+            else:
+              scores.append(0)
+        else:
+            scores.append(0)
+
+    labels = [user1, user2, user3]
+
+    fig, ax = plt.subplots()
+    ax.bar(labels, scores)
+
+    ax.set_title("Developer Score Comparison")
+    ax.set_ylabel("Score")
+
+    st.pyplot(fig)

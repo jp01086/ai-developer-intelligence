@@ -4,6 +4,10 @@ from datetime import datetime
 
 from app.skill_engine import infer_skills, infer_skills_from_metadata, merge_skills, recommend_roles
 from app.scoring_engine import calculate_score
+from app.analysis_service import detect_frameworks
+from app.commit_service import analyze_commit_activity
+from app.code_analysis_service import analyze_code_complexity
+from app.ai_summary_service import generate_ai_summary
 
 app = FastAPI(
     title="AI Developer Intelligence Platform",
@@ -27,6 +31,10 @@ def analyze_user(username: str):
         return {"error": "GitHub user not found"}
 
     repos = response.json()
+
+    frameworks = detect_frameworks(repos)
+    commit_data = analyze_commit_activity(username, repos)
+    code_analysis = analyze_code_complexity(repos)
 
     if not repos:
         return {"error": "User has no public repositories"}
@@ -89,6 +97,8 @@ def analyze_user(username: str):
 
     roles = recommend_roles(skills)
 
+    ai_summary = generate_ai_summary(username, languages, frameworks, skills)
+
     score_data = calculate_score(repo_count, total_stars, skills)
 
     return {
@@ -96,6 +106,7 @@ def analyze_user(username: str):
         "repo_count": repo_count,
         "total_stars": total_stars,
         "languages": languages,
+        "frameworks": frameworks,
         "skills": skills,
         "recommended_roles": roles,
         "developer_score": score_data["developer_score"],
@@ -106,5 +117,9 @@ def analyze_user(username: str):
             "last_active_days_ago": last_active_days
         },
 
-        "top_repositories": top_repo_data
-    }
+        "top_repositories": top_repo_data,
+        "commit_intelligence": commit_data,
+        "code_complexity": code_analysis,
+        "ai_summary": ai_summary
+}
+ 

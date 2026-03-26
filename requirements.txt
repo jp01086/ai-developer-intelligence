@@ -1,6 +1,0 @@
-fastapi
-uvicorn
-requests
-streamlit
-matplotlib
-numpy
