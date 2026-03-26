@@ -110,6 +110,12 @@ def analyze_user(username: str):
 
     score_data = calculate_score(repo_count, total_stars, skills)
 
+    score_breakdown = {
+    "activity_score": commit_data["consistency_score"],
+    "impact_score": min(total_stars / 1000, 100),
+    "skill_diversity_score": len(languages) * 10
+}
+    
     return {
         "username": username,
         "repo_count": repo_count,
@@ -119,11 +125,11 @@ def analyze_user(username: str):
         "skills": skills,
         "recommended_roles": roles,
         "developer_score": score_data["developer_score"],
-        "score_breakdown": score_data,
+        "score_breakdown": score_breakdown,
 
         "activity_analysis": {
-            "active_repositories": active_repos,
-            "last_active_days_ago": last_active_days
+        "active_repositories": active_repos,
+        "last_active_days_ago": last_active_days
         },
 
         "top_repositories": top_repo_data,
