@@ -34,10 +34,6 @@ def analyze_user(username: str):
     if not isinstance(repos, list):
         return {"error": "GitHub API limit reached or invalid response"}
 
-    # safety check
-    if not isinstance(repos, list):
-        return {"error": "Unexpected GitHub API response"}
-
     frameworks = detect_frameworks(repos)
     commit_data = analyze_commit_activity(username, repos)
     code_analysis = analyze_code_complexity(repos)
@@ -65,10 +61,10 @@ def analyze_user(username: str):
             languages[lang] = languages.get(lang, 0) + 1
 
         # activity tracking
-        if repo["pushed_at"]:
+        if repo.get("pushed_at"):
             active_repos += 1
 
-            pushed_date = datetime.strptime(repo["pushed_at"], "%Y-%m-%dT%H:%M:%SZ")
+            pushed_date = datetime.strptime(repo.get("pushed_at"), "%Y-%m-%dT%H:%M:%SZ")
 
             if latest_update is None or pushed_date > latest_update:
                 latest_update = pushed_date
