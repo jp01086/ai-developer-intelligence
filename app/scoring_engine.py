@@ -1,12 +1,7 @@
 def calculate_score(repo_count, total_stars, skills):
 
-    # Activity Score
     activity_score = min(repo_count * 2, 30)
-
-    # Impact Score
     impact_score = min(total_stars / 1000, 40)
-
-    # Skill Diversity Score
     skill_diversity_score = min(len(skills) * 5, 30)
 
     developer_score = activity_score + impact_score + skill_diversity_score
