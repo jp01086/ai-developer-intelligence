@@ -25,8 +25,8 @@ def home():
 def analyze_user(username: str):
 
     url = f"https://api.github.com/users/{username}/repos"
+    
     response = requests.get(url)
-
     if response.status_code != 200:
         return {"error": "GitHub API request failed"}
 
