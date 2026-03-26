@@ -9,10 +9,13 @@ username = st.text_input("Enter GitHub Username")
 
 if st.button("Analyze Developer"):
 
-    url = f"http://127.0.0.1:8000/analyze/{username}"
-    response = requests.get(url)
-
-    data = response.json()
+    url = f"https://ai-developer-intelligence.onrender.com/analyze/{username}"
+    try:
+        response = requests.get(url)
+        data = response.json()
+    except:
+        st.error("Backend API is not running yet.")
+        st.stop()
 
     st.subheader("Developer Report")
 
