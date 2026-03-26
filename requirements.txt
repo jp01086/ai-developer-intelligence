@@ -1,0 +1,9 @@
+<<<<<<< HEAD
+fastapi
+uvicorn
+requests
+streamlit
+matplotlib
+numpy
+=======
+>>>>>>> 5226ee4 (AI Developer Intelligence Platform)
