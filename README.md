@@ -6,9 +6,17 @@ The system analyzes GitHub repositories, commit activity, and project metadata t
 
 ---
 
+## Live Demo
+
+API Endpoint:
+https://ai-developer-intelligence.onrender.com/analyze/torvalds
+
+Interactive Dashboard:
+Run locally with Streamlit to explore developer reports.
+
 # Overview
 
-This platform analyzes a developer’s GitHub profile and automatically generates a comprehensive report including:
+AI Developer Intelligence Platform is a cloud-deployed developer analytics system that evaluates GitHub profiles and generates structured insights into engineering expertise, activity patterns, and technical impact. This includes:
 
 * Repository statistics
 * Developer impact (stars and activity)
@@ -24,6 +32,32 @@ The goal is to provide a **data-driven view of developer expertise** based on op
 
 ---
 
+<img width="674" height="736" alt="image" src="https://github.com/user-attachments/assets/1344942e-2782-44cb-9e32-44be3bf34f90" />
+<img width="723" height="740" alt="image" src="https://github.com/user-attachments/assets/ca626b79-8156-45fd-8a60-e25b825765d6" />
+<img width="748" height="748" alt="image" src="https://github.com/user-attachments/assets/949a6102-d19f-48b7-9ac0-787e3007853c" />
+<img width="737" height="624" alt="image" src="https://github.com/user-attachments/assets/c8fcd9ca-b157-488a-99a8-df149cf2bd32" />
+
+---
+## Project Structure
+
+
+ai-developer-intelligence
+│
+├── app
+│ ├── main.py
+│ ├── skill_engine.py
+│ ├── scoring_engine.py
+│ ├── analysis_service.py
+│ ├── commit_service.py
+│ └── code_analysis_service.py
+│
+├── dashboard
+│ └── app.py
+│
+├── requirements.txt
+└── README.md
+
+---
 # Key Features
 
 ### Developer Analysis
@@ -171,6 +205,18 @@ The platform generates a developer report including:
 
 ---
 
+## Deployment
+
+The backend API is deployed on Render and publicly accessible.
+
+Production Endpoint:
+https://ai-developer-intelligence.onrender.com
+
+Example:
+https://ai-developer-intelligence.onrender.com/analyze/torvalds
+
+---
+
 # Future Improvements
 
 * Pull request analysis
@@ -184,8 +230,4 @@ The platform generates a developer report including:
 # Author
 
 John
-<img width="674" height="736" alt="image" src="https://github.com/user-attachments/assets/1344942e-2782-44cb-9e32-44be3bf34f90" />
-<img width="723" height="740" alt="image" src="https://github.com/user-attachments/assets/ca626b79-8156-45fd-8a60-e25b825765d6" />
-<img width="748" height="748" alt="image" src="https://github.com/user-attachments/assets/949a6102-d19f-48b7-9ac0-787e3007853c" />
-<img width="737" height="624" alt="image" src="https://github.com/user-attachments/assets/c8fcd9ca-b157-488a-99a8-df149cf2bd32" />
 
