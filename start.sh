@@ -1,7 +1,9 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 echo "Starting FastAPI backend..."
+python3 -m uvicorn app.main:app --reload --host 0.0.0.0 --port 8000 &
 
-export PYTHONPATH=$PYTHONPATH:$(pwd)
+sleep 3
 
-python3 -m uvicorn app.main:app --host 0.0.0.0 --port $PORT
+echo "Starting Streamlit dashboard..."
+python3 -m streamlit run dashboard/app.py

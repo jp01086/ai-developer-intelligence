@@ -1,13 +1,14 @@
 from fastapi import FastAPI
 import requests
 from datetime import datetime
+import os
 
-from skill_engine import infer_skills, infer_skills_from_metadata, merge_skills, recommend_roles
-from scoring_engine import calculate_score
-from analysis_service import detect_frameworks
-from commit_service import analyze_commit_activity
-from code_analysis_service import analyze_code_complexity
-from ai_summary_service import generate_ai_summary
+from app.skill_engine import infer_skills, infer_skills_from_metadata, merge_skills, recommend_roles
+from app.scoring_engine import calculate_score
+from app.analysis_service import detect_frameworks
+from app.commit_service import analyze_commit_activity
+from app.code_analysis_service import analyze_code_complexity
+from app.ai_summary_service import generate_ai_summary
 
 app = FastAPI(
     title="AI Developer Intelligence Platform",
@@ -26,7 +27,13 @@ def analyze_user(username: str):
 
     url = f"https://api.github.com/users/{username}/repos"
     
-    response = requests.get(url)
+    token = os.getenv("GITHUB_TOKEN")
+
+    headers = {}
+    if token:
+        headers["Authorization"] = f"token {token}"
+
+    response = requests.get(url, headers=headers)
     if response.status_code != 200:
         return {"error": "GitHub API request failed"}
 
